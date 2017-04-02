@@ -81,16 +81,16 @@
     <Compile Include="Sdl2GLControl.cs" />
     <Compile Include="WinGLControl.cs" />
     <Compile Include="X11GLControl.cs" />
-    <None Include="LICENSE.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <EmbeddedResource Include="Resources\Toolbox.Icon.bmp" />
     <EmbeddedResource Include="Resources\OpenGL_Logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="phrogGLControl.snk" />
-    <None Include="OpenTK.dll.config" />
+    <None Include="..\LICENSE.md" />
+    <None Include="OpenTK.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
+    <None Include="phrogGLControl.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
