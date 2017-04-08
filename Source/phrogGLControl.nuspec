@@ -11,7 +11,7 @@
     <iconUrl>https://raw.githubusercontent.com/phroggster/phrogGLControl/master/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Pre-release version</releaseNotes>
+    <releaseNotes>Pre-release version. Fixed documentation.</releaseNotes>
     <copyright>Copyright © 2017 phroggie</copyright>
     <tags>phrogGLControl OpenGL GLControl OpenTK Graphics Game 3D .Net</tags>
     <dependencies>
