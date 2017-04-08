@@ -1,9 +1,6 @@
-﻿#region License
+﻿#region --- License ---
 //
 // The Open Toolkit Library License
-//
-// Author:
-//       phroggie
 //
 // Copyright (c) 2017 phroggie
 //

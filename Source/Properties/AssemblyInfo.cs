@@ -5,11 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Phroggiesoft.Controls.phrogGLControl")]
+[assembly: AssemblyTitle("phrogGLControl")]
+
 [assembly: AssemblyDescription("An extended OpenTK.GLControl fork allowing for additional design-time features")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("phroggiesoft")]
-[assembly: AssemblyProduct("Phroggiesoft.Controls.phrogGLControl")]
+[assembly: AssemblyProduct("phrogGLControl")]
 [assembly: AssemblyCopyright("Copyright © 2017 phroggie")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -18,7 +19,6 @@ using System.Runtime.InteropServices;
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
-
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("e01a6072-b97a-475e-a405-9d56308956b3")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.2.0.0")]
-[assembly: AssemblyFileVersion("0.2.0.0")]
+[assembly: AssemblyVersion("0.5.1.0")]
+[assembly: AssemblyFileVersion("0.5.1.0")]

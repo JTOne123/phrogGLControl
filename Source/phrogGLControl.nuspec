@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>phroggie</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/phroggster/phrogGLControl/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/phroggster/phrogGLControl</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/phroggster/phrogGLControl/master/Logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Pre-release version</releaseNotes>
+    <copyright>Copyright © 2017 phroggie</copyright>
+    <tags>phrogGLControl OpenGL GLControl OpenTK Graphics Game 3D .Net</tags>
+  </metadata>
+  <files>
+    <file src="readme.txt" target="" />
+  </files>
+</package>

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Phroggiesoft.Controls</RootNamespace>
     <AssemblyName>phrogGLControl</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -17,7 +17,8 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug</OutputPath>
+    <IntermediateOutputPath>obj\Debug</IntermediateOutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -27,16 +28,26 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Release</OutputPath>
+    <IntermediateOutputPath>obj\Release</IntermediateOutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DocumentationFile>bin\Release\phrogGLControl.xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SignedRelease|AnyCPU' ">
+    <OutputPath>bin\SignedRelease\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\SignedRelease\phrogGLControl.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>phrogGLControl.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>K:\SetecAstronomy\phroggiesoft.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="OpenTK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
@@ -63,9 +74,7 @@
     </Compile>
     <Compile Include="Carbon.cs" />
     <Compile Include="CarbonGLControl.cs" />
-    <Compile Include="Design\FlagsListBoxUIEditor.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Design\FlagsListBoxUIEditor.cs" />
     <Compile Include="Design\phrogGLControlDesigner.cs" />
     <Compile Include="phrogGLControl.cs">
       <SubType>Component</SubType>
@@ -86,13 +95,10 @@
     <EmbeddedResource Include="Resources\OpenGL_Logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\LICENSE.md" />
-    <None Include="..\README.md" />
     <None Include="OpenTK.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <None Include="phrogGLControl.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -102,4 +108,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="WipeTK" AfterTargets="AfterBuild" Condition=" '$(Configuration)|$(Platform)' == 'SignedRelease|AnyCPU' ">
+    <Delete Files="$(OutDir)OpenTK.dll;$(OutDir)OpenTK.dll.config;$(OutDir)OpenTK.xml" />
+  </Target>
 </Project>

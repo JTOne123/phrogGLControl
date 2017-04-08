@@ -1,4 +1,4 @@
-﻿#region License
+﻿#region --- License ---
 //
 // The Open Toolkit Library License
 //
@@ -25,15 +25,28 @@
 //
 #endregion
 
+using System;
+using System.Windows.Forms;
+using OpenTK;
 using OpenTK.Graphics;
-using OpenTK.Platform;
 
 namespace Phroggiesoft.Controls
 {
-    internal interface IGLControl
+    // Constructs GLControls.
+    internal class GLControlFactory
     {
-        IGraphicsContext CreateContext(int major, int minor, GraphicsContextFlags flags);
-        bool IsIdle { get; }
-        IWindowInfo WindowInfo { get; }
+        public IGLControl CreateGLControl(GraphicsMode mode, Control control)
+        {
+            if (mode == null)
+                throw new ArgumentNullException("mode");
+            if (control == null)
+                throw new ArgumentNullException("control");
+
+            if (Configuration.RunningOnSdl2) return new Sdl2GLControl(mode, control);
+            else if (Configuration.RunningOnWindows) return new WinGLControl(mode, control);
+            else if (Configuration.RunningOnMacOS) return new CarbonGLControl(mode, control);
+            else if (Configuration.RunningOnX11) return new X11GLControl(mode, control);
+            else throw new PlatformNotSupportedException();
+        }
     }
 }
