@@ -1,12 +1,12 @@
 ﻿properties { 
   $majorVersion = "0.5"
   $majorWithReleaseVersion = "0.5.5"
-  $nugetPrerelease = "alpha"
+  $nugetPrerelease = "beta"
   $pkgPrerelease = if ($nugetPrerelease -ne $null) {"-" + $nugetPrerelease} else {""}
   $zipFileName = "phrogGLControl-" + $majorWithReleaseVersion + $pkgPrerelease + ".zip"
   $version = GetVersion $majorWithReleaseVersion
   $packageId = "Phroggiesoft.phrogGLControl"
-  $signAssemblies = $true
+  $signAssemblies = $false
   $signKeyPath = "K:\SetecAstronomy\phroggiesoft.snk"
   $buildDocumentation = $false
   $buildNuGet = $true
