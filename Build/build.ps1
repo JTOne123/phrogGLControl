@@ -30,7 +30,7 @@
   $openTKVersion = "2.0.0"
   $openTKPath = "$buildDir\Temp\OpenTK.$openTKVersion"
 
-  if (Get-Variable "APPVEYOR" -ErrorAction SilentlyContinue | Out-Null) {
+  if (Get-Variable "appveyor_snk_secret" -ErrorAction SilentlyContinue | Out-Null) {
     $buildNuGet = $true
     $signAssemblies = $true
     $signKeyPath = "$baseDir\appveyor.snk"

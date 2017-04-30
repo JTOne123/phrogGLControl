@@ -5,13 +5,13 @@ image: Visual Studio 2017
 nuget:
   disable_publish_on_pr: true
 environment:
-  sigsec:
+  appveyor_snk_secret:
     secure: xPHd63T1ITC08g7rnFgmRpGWYPefxI1ju5a778fpDUbmPM8bAruUspLcu3Rkt7sB
 build_script:
 - ps: >-
     nuget install secure-file -ExcludeVersion
 
-    secure-file\tools\secure-file -decrypt appveyor.snk.enc -secret %sigsec%
+    secure-file\tools\secure-file -decrypt appveyor.snk.enc -secret %appveyor_snk_secret%
 
     Build\runbuild.ps1
 
@@ -22,12 +22,20 @@ build_script:
 test: off
 artifacts:
 - path: phrogGLControl*.zip
+  name: binsrczip
 - path: '*.nupkg'
-  name: nuget
+  name: nupkgs
 deploy:
 - provider: NuGet
   api_key:
     secure: rTP0g5fsIZb4ob+1hwFZehSwBHebhIH7yMNyxPg9Lu50/3VRAzkg0v8mDqUt7ItX
-  artifact: nuget
+  artifact: nupkgs
+  on:
+    appveyor_repo_tag: true
+- provider: GitHub
+  auth_token:
+    secure: 1WPm4pCuP+jZK1TN8QZvlIrJFcaswkge5aw0oTwxMVBm/HnnBrB6PFmwkYprqlYb
+  artifact: binsrczip
+  draft: true
   on:
     appveyor_repo_tag: true
