@@ -1,13 +1,13 @@
 ﻿properties { 
   $majorVersion = "0.5"
   $majorWithReleaseVersion = "0.5.5"
-  $nugetPrerelease = "beta"
+  $nugetPrerelease = "charlie"
   $pkgPrerelease = if ($nugetPrerelease -ne $null) {"-" + $nugetPrerelease} else {""}
   $zipFileName = "phrogGLControl-" + $majorWithReleaseVersion + $pkgPrerelease + ".zip"
   $version = GetVersion $majorWithReleaseVersion
   $packageId = "Phroggiesoft.phrogGLControl"
   $signAssemblies = $false
-  $signKeyPath = "K:\SetecAstronomy\phroggiesoft.snk"
+  $signKeyPath = "C:\devel\phrogglcontrol.snk"
   $buildDocumentation = $false
   $buildNuGet = $true
   $treatWarningsAsErrors = $false
@@ -27,10 +27,14 @@
   $nugetPath = "$buildDir\Temp\nuget.exe"
   $vswhereVersion = "1.0.58"
   $vswherePath = "$buildDir\Temp\vswhere.$vswhereVersion"
-  #$nunitConsoleVersion = "3.6.1"
-  #$nunitConsolePath = "$buildDir\Temp\NUnit.ConsoleRunner.$nunitConsoleVersion"
   $openTKVersion = "2.0.0"
   $openTKPath = "$buildDir\Temp\OpenTK.$openTKVersion"
+
+  if (Get-Variable "APPVEYOR" -ErrorAction SilentlyContinue | Out-Null) {
+    $buildNuGet = $true
+    $signAssemblies = $true
+    $signKeyPath = "$baseDir\appveyor.snk"
+  }
 
   $builds = @(
     @{Framework = "net45"; Enabled=$true},
