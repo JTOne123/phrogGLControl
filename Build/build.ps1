@@ -1,7 +1,7 @@
 ﻿properties { 
-  $majorVersion = "0.5"
-  $majorWithReleaseVersion = "0.5.5"
-  $nugetPrerelease = "charlie"
+  $majorVersion = "1.0"
+  $majorWithReleaseVersion = "1.0.0"
+  $nugetPrerelease = $null
   $pkgPrerelease = if ($nugetPrerelease -ne $null) {"-" + $nugetPrerelease} else {""}
   $zipFileName = "phrogGLControl-" + $majorWithReleaseVersion + $pkgPrerelease + ".zip"
   $version = GetVersion $majorWithReleaseVersion

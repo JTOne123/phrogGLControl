@@ -1,4 +1,4 @@
-phrogGLControl version 0.5.5-alpha
+phrogGLControl version 1.0.0 - 2017 April 30
 
 This package is intended to be a drop-in replacement for
 OpenTK.GLControl, while offering some distinct advantages to interested

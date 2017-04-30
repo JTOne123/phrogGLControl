@@ -1,0 +1,16 @@
+Edit appveyor.yml version number.
+Edit build.ps1:
+   $majorVersion = "1.0"
+   $majorWithReleaseVersion = "1.0.1"
+   $nugetPrerelease = $null
+Edit Doc/readme.txt
+edit src\phrogGLControl\Properties\AssemblyInfo.cs
+   [assembly: AssemblyVersion("1.0.*")]
+   [assembly: AssemblyFileVersion("1.0.0.0")]
+```
+git commit
+git tag -a release_X.Y.Z{-alpha}
+git push origin release_X.Y.Z{-alpha}
+```
+Await build completion
+Modify https://github.com/phroggster/phrogGLControl/releases and set public
