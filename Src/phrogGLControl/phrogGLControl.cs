@@ -54,16 +54,16 @@ namespace Phroggiesoft.Controls
     {
         #region --- Public interface ---
 
-        #region --- Constructor ---
+        #region --- Constructors ---
 
         /// <summary>
         /// Constructs a new <see cref="phrogGLControl"/> instance.
         /// </summary>
         public phrogGLControl()
         {
-            design_mode = DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
-
             InitializeComponent();
+
+            design_mode = DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
             if (!design_mode)
             {
@@ -79,7 +79,15 @@ namespace Phroggiesoft.Controls
             }
         }
 
-        #endregion // --- Constructor ---
+        /// <summary>
+        /// Constructs a new <see cref="phrogGLControl"/> instance owned by an <see cref="IContainer"/>.
+        /// </summary>
+        public phrogGLControl(IContainer container) : this()
+        {
+            container.Add(this);
+        }
+
+        #endregion // --- Constructors ---
 
         #region --- Properties ---
 

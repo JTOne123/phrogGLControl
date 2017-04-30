@@ -1,4 +1,4 @@
-﻿The Open Toolkit library license
+The Open Toolkit library license
 
 Copyright © 2006 - 2014 Stefanos Apostolopoulos <stapostol@gmail.com> for the Open Toolkit library.
 
