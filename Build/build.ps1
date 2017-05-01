@@ -2,7 +2,7 @@
   $packageId = "Phroggiesoft.phrogGLControl"
   $majorVersion = "0.6"
   $majorWithReleaseVersion = "0.6.0"
-  $nugetPrerelease = "alpha"
+  $nugetPrerelease = $null
   $pkgReleaseNote = "Strongly named (67d7de1c71d38d86), with release notes, and built solely by AppVeyor"
 
   $pkgPrerelease = if ($nugetPrerelease -ne $null) {"-" + $nugetPrerelease} else {""}
