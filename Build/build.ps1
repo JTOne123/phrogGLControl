@@ -1,9 +1,9 @@
 ﻿properties { 
   $packageId = "Phroggiesoft.phrogGLControl"
   $majorVersion = "0.6"
-  $majorWithReleaseVersion = "0.6.0"
+  $majorWithReleaseVersion = "0.6.1"
   $nugetPrerelease = $null
-  $pkgReleaseNote = "Strongly named (67d7de1c71d38d86), with release notes, and built solely by AppVeyor"
+  $pkgReleaseNote = "Fix an accessibility problem in the designer component"
 
   $pkgPrerelease = if ($nugetPrerelease -ne $null) {"-" + $nugetPrerelease} else {""}
   $zipFileName = "phrogGLControl-" + $majorWithReleaseVersion + $pkgPrerelease + ".zip"

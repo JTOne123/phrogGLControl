@@ -3,6 +3,7 @@ Edit build.ps1:
    $majorVersion = "1.0"
    $majorWithReleaseVersion = "1.0.0"
    $nugetPrerelease = $null
+   $pkgReleaseNote = "Now capacitates double the fluxes thanks to Mr. Fusion!"
 Edit Doc/readme.txt
 ```
 git commit

@@ -39,19 +39,19 @@ using System.Windows.Forms.Design;
 
 namespace Phroggiesoft.Controls.Design
 {
-    // <summary>
-    // The designer "brains" behind the <see cref="GLControl"/>.
-    // </summary>
-    // <seealso cref="GLControl"/>
+    /// <summary>
+    /// The designer "brains" behind the <see cref="phrogGLControl"/>.
+    /// </summary>
+    /// <seealso cref="phrogGLControl"/>
     [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
-    internal class phrogGLControlDesigner : ControlDesigner
+    public class PhrogGLControlDesigner : ControlDesigner
     {
         #region --- Constructor ---
 
-        // <summary>
-        // Constructs a new <see cref="phrogGLControlDesigner"/> instance.
-        // </summary>
-        public phrogGLControlDesigner()
+        /// <summary>
+        /// Constructs a new <see cref="PhrogGLControlDesigner"/> instance.
+        /// </summary>
+        public PhrogGLControlDesigner()
         {
             if (OpenGLLogo == null)
             {
@@ -66,25 +66,25 @@ namespace Phroggiesoft.Controls.Design
 
         #region --- Protected virtual string[] properties to allow for filtering ---
 
-        // <summary>
-        // Events that will be filtered out and not displayed for controls assigned to this <see cref="phrogGLControlDesigner"/>.
-        // </summary>
+        /// <summary>
+        /// Events that will be filtered out and not displayed for controls assigned to this <see cref="PhrogGLControlDesigner"/>.
+        /// </summary>
         protected virtual string[] FilteredEvents { get { return _FilteredEvents; } }
 
-        // <summary>
-        // Properties that will be filtered out and not displayed for controls assigned to this <see cref="phrogGLControlDesigner"/>.
-        // </summary>
+        /// <summary>
+        /// Properties that will be filtered out and not displayed for controls assigned to this <see cref="PhrogGLControlDesigner"/>.
+        /// </summary>
         protected virtual string[] FilteredProperties { get { return _FilteredProperties; } }
 
         #endregion // --- Protected virtual string[] properties to allow for filtering ---
 
         #region --- public override void Initialize(IComponent component) ---
 
-        // <summary>
-        // Initializes the designer with the specified component.
-        // </summary>
-        // <param name="component">The <see cref="IComponent"/> to associate the designer with. This component
-        // must always be an instance of, or derive from, <see cref="Control"/>.</param>
+        /// <summary>
+        /// Initializes the designer with the specified component.
+        /// </summary>
+        /// <param name="component">The <see cref="IComponent"/> to associate the designer with. This component
+        /// must always be an instance of, or derive from, <see cref="Control"/>.</param>
         public override void Initialize(IComponent component)
         {
             base.Initialize(component);
@@ -100,12 +100,12 @@ namespace Phroggiesoft.Controls.Design
 
         #region --- protected override void Dispose(bool disposing) ---
 
-        // <summary>
-        // Releases the unmanaged resources used by the <see cref="phrogGLControlDesigner"/> and
-        // optionally releases the managed resources.
-        // </summary>
-        // <param name="disposing"><c>true</c> to release both managed and unmanaged resources;
-        // <c>false</c> to release only unmanaged resources.</param>
+        /// <summary>
+        /// Releases the unmanaged resources used by the <see cref="PhrogGLControlDesigner"/> and
+        /// optionally releases the managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources;
+        /// <c>false</c> to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -122,11 +122,11 @@ namespace Phroggiesoft.Controls.Design
 
         #region --- protected override void OnPaintAdornments(PaintEventArgs pe) ---
 
-        // <summary>
-        // Receives a call when the control that the designer is managing has painted its surface
-        // so the designer can paint any additional adornments on top of the control.
-        // </summary>
-        // <param name="pe">A <see cref="PaintEventArgs"/> the designer can use to draw on the control.</param>
+        /// <summary>
+        /// Receives a call when the control that the designer is managing has painted its surface
+        /// so the designer can paint any additional adornments on top of the control.
+        /// </summary>
+        /// <param name="pe">A <see cref="PaintEventArgs"/> the designer can use to draw on the control.</param>
         protected override void OnPaintAdornments(PaintEventArgs pe)
         {
             if (Control != null)
@@ -171,11 +171,11 @@ namespace Phroggiesoft.Controls.Design
 
         #region --- protected override void PreFilterEvents(IDictionary events) ---
 
-        // <summary>
-        // Adjusts the set of events the component exposes through a <see cref="TypeDescriptor"/>.
-        // </summary>
-        // <param name="events">An <see cref="IDictionary"/> that contains the events for the class of the component.</param>
-        // <seealso cref="FilteredEvents"/>
+        /// <summary>
+        /// Adjusts the set of events the component exposes through a <see cref="TypeDescriptor"/>.
+        /// </summary>
+        /// <param name="events">An <see cref="IDictionary"/> that contains the events for the class of the component.</param>
+        /// <seealso cref="FilteredEvents"/>
         protected override void PreFilterEvents(IDictionary events)
         {
             base.PreFilterEvents(events);
@@ -190,11 +190,11 @@ namespace Phroggiesoft.Controls.Design
 
         #region --- protected override void PreFilterProperties(IDictionary properties) ---
 
-        // <summary>
-        // Adjusts the set of properties the component exposes through a <see cref="TypeDescriptor"/>.
-        // </summary>
-        // <param name="properties">An <see cref="IDictionary"/> that contains the properties for the class of the component.</param>
-        // <seealso cref="FilteredProperties"/>
+        /// <summary>
+        /// Adjusts the set of properties the component exposes through a <see cref="TypeDescriptor"/>.
+        /// </summary>
+        /// <param name="properties">An <see cref="IDictionary"/> that contains the properties for the class of the component.</param>
+        /// <seealso cref="FilteredProperties"/>
         protected override void PreFilterProperties(IDictionary properties)
         {
             base.PreFilterProperties(properties);

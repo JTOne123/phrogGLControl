@@ -44,7 +44,7 @@ namespace Phroggiesoft.Controls
     /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     [Description("An extended OpenTK.GLControl fork allowing for additional design and run-time features.")]
-    [Designer(typeof(Design.phrogGLControlDesigner))]
+    [Designer(typeof(Design.PhrogGLControlDesigner))]
     [DefaultEvent("Paint")]
     [DisplayName("phrogGLControl")]
     [InitializationEvent("Load")]
