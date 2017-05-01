@@ -114,9 +114,13 @@ task Build -depends Clean {
 
   NetCliBuild
 
-  if (Test-Path Env:APPVEYOR_SNK_SECRET) {
-    Remove-Item "$baseDir\appveyor.snk"
+  if (Test-Path -path "$baseDir\appveyor.snk")
+  {
+    Write-Host -ForegroundColor Magenta "Wiping strong-name-key..."
+    Execute-Command -command { del "$baseDir\appveyor.snk" -Force }
+
     #TODO: Verify against 67d7de1c71d38d86 with sn -T
+    #probably better done during testing...
   }
 }
 
