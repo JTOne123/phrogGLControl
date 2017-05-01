@@ -7,6 +7,11 @@ environment:
     secure: KR04IlBSVjE2Jckq2+4gMYiY7n3NfOQVma+IianAuxtiI8aUt/Nhvmnj335mL5pv
   appveyor_snk_secret:
     secure: xPHd63T1ITC08g7rnFgmRpGWYPefxI1ju5a778fpDUbmPM8bAruUspLcu3Rkt7sB
+install:
+- cmd: >-
+    nuget install secure-file -ExcludeVersion
+
+    secure-file\tools\secure-file -decrypt appveyor.snk.enc -secret "%APPVEYOR_SNK_SECRET%"
 nuget:
   disable_publish_on_pr: true
 build_script:

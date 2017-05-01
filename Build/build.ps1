@@ -30,10 +30,20 @@
   $nugetPath = "$buildDir\Temp\nuget.exe"
   $openTKVersion = "2.0.0"
   $openTKPath = "$buildDir\Temp\OpenTK.$openTKVersion"
-  $secureFileVersion = "1.0.31"
-  $secureFilePath = "$buildDir\Temp\secure-file.$secureFileVersion"
   $vswhereVersion = "1.0.58"
   $vswherePath = "$buildDir\Temp\vswhere.$vswhereVersion"
+  
+  if (Test-Path Env:APPVEYOR_SNK_SECRET) {
+    $buildNuGet = $true
+    $signAssemblies = $true
+    $signKeyPath = "$baseDir\appveyor.snk"
+  }
+  
+  if ($signAssemblies -eq $true) {
+    Write-Host -ForegroundColor Green "Assemblies will be signed by $signKeyPath."
+  } else {
+    Write-Host -ForegroundColor Yellow "This build will be unsigned."
+  }
 
   $builds = @(
     @{Framework = "net45"; Enabled=$true},
@@ -72,23 +82,6 @@ task Build -depends Clean {
 
   mkdir "$buildDir\Temp" -Force
   EnsureNuGetExists
-
-  if (Test-Path Env:APPVEYOR_SNK_SECRET) {
-    write-host -ForegroundColor Green "Decoding appveyer.snk..."
-    $snksec = Get-Item Env:APPVEYOR_SNK_SECRET
-    EnsureNuGetPacakge "secure-file" $secureFilePath $secureFileVersion
-    exec { & "$secureFilePath\tools\secure-file" "-decrypt" "$baseDir\appveyor.snk.enc" "-secret" $snksec.Value }
-
-    $buildNuGet = $true
-    $signAssemblies = $true
-    $signKeyPath = "$baseDir\appveyor.snk"
-  }
-  
-  if ($signAssemblies -eq $true) {
-    Write-Host -ForegroundColor Green "Assemblies will be signed by $signKeyPath."
-  } else {
-    Write-Host -ForegroundColor Yellow "This build will be unsigned."
-  }
 
   EnsureNuGetPacakge "vswhere" $vswherePath $vswhereVersion
   EnsureNuGetPacakge "OpenTK" $openTKPath $openTKVersion
