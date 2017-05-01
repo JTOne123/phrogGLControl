@@ -18,6 +18,7 @@
     <PackageIconUrl>https://raw.githubusercontent.com/phroggster/phrogGLControl/master/Logo.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/phroggster/phrogGLControl</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/phroggster/phrogGLControl/master/LICENSE.md</PackageLicenseUrl>
+    <PackageReleaseNotes>Dynamic release notes from build.ps1 go here</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/phroggster/phrogGLControl</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <RootNamespace>Phroggiesoft.Controls</RootNamespace>

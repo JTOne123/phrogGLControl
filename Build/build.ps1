@@ -1,15 +1,18 @@
 ﻿properties { 
+  $packageId = "Phroggiesoft.phrogGLControl"
   $majorVersion = "0.6"
   $majorWithReleaseVersion = "0.6.0"
   $nugetPrerelease = "alpha"
+  $pkgReleaseNote = "Strongly named (67d7de1c71d38d86), with release notes, and built solely by AppVeyor"
+
   $pkgPrerelease = if ($nugetPrerelease -ne $null) {"-" + $nugetPrerelease} else {""}
   $zipFileName = "phrogGLControl-" + $majorWithReleaseVersion + $pkgPrerelease + ".zip"
   $version = GetVersion $majorWithReleaseVersion
-  $packageId = "Phroggiesoft.phrogGLControl"
+
   $signAssemblies = $false
   $signKeyPath = "C:\devel\phrogglcontrol.snk"
   $buildDocumentation = $false
-  $buildNuGet = $true
+  $buildNuGet = $false
   $treatWarningsAsErrors = $false
   $workingName = if ($workingName) {$workingName} else {"Working"}
   $netCliVersion = "1.0.0"
@@ -108,6 +111,7 @@ task Build -depends Clean {
   Edit-XmlNodes -doc $xml -xpath "/Project/PropertyGroup/PackageId" -value $packageId
   Edit-XmlNodes -doc $xml -xpath "/Project/PropertyGroup/VersionPrefix" -value $majorWithReleaseVersion
   Edit-XmlNodes -doc $xml -xpath "/Project/PropertyGroup/VersionSuffix" -value $nugetPrerelease
+  Edit-XmlNodes -doc $xml -xpath "/Project/PropertyGroup/PackageReleaseNotes" -value $pkgReleaseNote
   $xml.save("$workingSourceDir\phrogGLControl\phrogGLControl.csproj")
 
   $projectPath = "$workingSourceDir\phrogGLControl\phrogGLControl.csproj"
