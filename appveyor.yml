@@ -1,24 +1,21 @@
-version: 1.0.0
+version: 0.6.0.{build}
 pull_requests:
   do_not_increment_build_number: true
 image: Visual Studio 2017
-nuget:
-  disable_publish_on_pr: true
 environment:
+  appveyor_rdp_password:
+    secure: KR04IlBSVjE2Jckq2+4gMYiY7n3NfOQVma+IianAuxtiI8aUt/Nhvmnj335mL5pv
   appveyor_snk_secret:
     secure: xPHd63T1ITC08g7rnFgmRpGWYPefxI1ju5a778fpDUbmPM8bAruUspLcu3Rkt7sB
+nuget:
+  disable_publish_on_pr: true
 build_script:
 - ps: >-
-    nuget install secure-file -ExcludeVersion
-
-    secure-file\tools\secure-file -decrypt appveyor.snk.enc -secret %appveyor_snk_secret%
-
     Build\runbuild.ps1
 
     move -Path Working\phrogGLControl*.zip -Destination .
 
     move -Path Working\NuGet\*.nupkg -Destination .
-
 test: off
 artifacts:
 - path: phrogGLControl*.zip

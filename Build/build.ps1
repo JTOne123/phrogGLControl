@@ -1,7 +1,7 @@
 ﻿properties { 
-  $majorVersion = "1.0"
-  $majorWithReleaseVersion = "1.0.0"
-  $nugetPrerelease = $null
+  $majorVersion = "0.6"
+  $majorWithReleaseVersion = "0.6.0"
+  $nugetPrerelease = "alpha"
   $pkgPrerelease = if ($nugetPrerelease -ne $null) {"-" + $nugetPrerelease} else {""}
   $zipFileName = "phrogGLControl-" + $majorWithReleaseVersion + $pkgPrerelease + ".zip"
   $version = GetVersion $majorWithReleaseVersion
@@ -25,16 +25,12 @@
   $workingSourceDir = "$workingDir\Src"
 
   $nugetPath = "$buildDir\Temp\nuget.exe"
-  $vswhereVersion = "1.0.58"
-  $vswherePath = "$buildDir\Temp\vswhere.$vswhereVersion"
   $openTKVersion = "2.0.0"
   $openTKPath = "$buildDir\Temp\OpenTK.$openTKVersion"
-
-  if (Get-Variable "appveyor_snk_secret" -ErrorAction SilentlyContinue | Out-Null) {
-    $buildNuGet = $true
-    $signAssemblies = $true
-    $signKeyPath = "$baseDir\appveyor.snk"
-  }
+  $secureFileVersion = "1.0.31"
+  $secureFilePath = "$buildDir\Temp\secure-file.$secureFileVersion"
+  $vswhereVersion = "1.0.58"
+  $vswherePath = "$buildDir\Temp\vswhere.$vswhereVersion"
 
   $builds = @(
     @{Framework = "net45"; Enabled=$true},
@@ -73,8 +69,25 @@ task Build -depends Clean {
 
   mkdir "$buildDir\Temp" -Force
   EnsureNuGetExists
+
+  if (Test-Path Env:APPVEYOR_SNK_SECRET) {
+    write-host -ForegroundColor Green "Decoding appveyer.snk..."
+    $snksec = Get-Item Env:APPVEYOR_SNK_SECRET
+    EnsureNuGetPacakge "secure-file" $secureFilePath $secureFileVersion
+    exec { & "$secureFilePath\tools\secure-file" "-decrypt" "$baseDir\appveyor.snk.enc" "-secret" $snksec.Value }
+
+    $buildNuGet = $true
+    $signAssemblies = $true
+    $signKeyPath = "$baseDir\appveyor.snk"
+  }
+  
+  if ($signAssemblies -eq $true) {
+    Write-Host -ForegroundColor Green "Assemblies will be signed by $signKeyPath."
+  } else {
+    Write-Host -ForegroundColor Yellow "This build will be unsigned."
+  }
+
   EnsureNuGetPacakge "vswhere" $vswherePath $vswhereVersion
-  #EnsureNuGetPacakge "NUnit.ConsoleRunner" $nunitConsolePath $nunitConsoleVersion
   EnsureNuGetPacakge "OpenTK" $openTKPath $openTKVersion
 
   $script:msBuildPath = GetMsBuildPath
@@ -100,6 +113,11 @@ task Build -depends Clean {
   $projectPath = "$workingSourceDir\phrogGLControl\phrogGLControl.csproj"
 
   NetCliBuild
+
+  if (Test-Path Env:APPVEYOR_SNK_SECRET) {
+    Remove-Item "$baseDir\appveyor.snk"
+    #TODO: Verify against 67d7de1c71d38d86 with sn -T
+  }
 }
 
 # Optional build documentation, add files to final zip
